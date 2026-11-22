@@ -1,68 +1,154 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-[#0b1120] text-white md:flex">
+
+      {/* Sidebar */}
+      <aside className="w-full border-b border-slate-800 bg-[#111827] p-6 md:min-h-screen md:w-64 md:border-b-0 md:border-r">
+        <h1 className="text-2xl font-bold text-blue-400">
+          BrainBox
+        </h1>
+
+        <p className="mt-2 text-sm text-slate-500">
+          Intelligent Workspace
+        </p>
+
+        <nav className="mt-10 space-y-3">
+          <div className="rounded-xl bg-blue-600/20 p-3 text-blue-400">
+            Dashboard
+          </div>
+
+          <Link
+            href="/tasks"
+            className="block rounded-xl p-3 text-slate-400 transition hover:bg-slate-800 hover:text-white"
+          >
+            My Tasks
+          </Link>
+
+          <Link
+            href="/knowledge"
+            className="block rounded-xl p-3 text-slate-400 transition hover:bg-slate-800 hover:text-white"
+          >
+            Knowledge Vault
+          </Link>
+
+          <Link
+            href="/assistant"
+            className="block rounded-xl p-3 text-slate-400 transition hover:bg-slate-800 hover:text-white"
+          >
+            AI Assistant
+          </Link>
+
+          <Link
+            href="/analytics"
+            className="block rounded-xl p-3 text-slate-400 transition hover:bg-slate-800 hover:text-white"
+          >
+            Productivity &amp; Analytics
+          </Link>
+
+          <Link
+            href="/settings"
+            className="block rounded-xl p-3 text-slate-400 transition hover:bg-slate-800 hover:text-white"
+          >
+            Settings
+          </Link>
+        </nav>
+      </aside>
+
+      {/* Main Dashboard */}
+      <main className="flex-1 p-6 md:p-10">
+
+        <header className="mb-10">
+          <p className="text-sm text-slate-400">
+            YOUR WORKSPACE
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+          <h2 className="mt-2 text-3xl font-bold">
+            Welcome to BrainBox
+          </h2>
+
+          <p className="mt-2 text-slate-400">
+            Organize your work. Capture your ideas. Think smarter.
+          </p>
+        </header>
+
+        {/* Overview Cards */}
+        <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <p className="text-sm text-slate-400">Tasks</p>
+            <h3 className="mt-3 text-3xl font-bold">0</h3>
+            <p className="mt-2 text-sm text-slate-500">
+              Tasks to organize
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <p className="text-sm text-slate-400">Knowledge</p>
+            <h3 className="mt-3 text-3xl font-bold">0</h3>
+            <p className="mt-2 text-sm text-slate-500">
+              Notes saved
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <p className="text-sm text-slate-400">Productivity</p>
+            <h3 className="mt-3 text-3xl font-bold">Ready</h3>
+            <p className="mt-2 text-sm text-slate-500">
+              Your workspace is ready
+            </p>
+          </div>
+
+        </section>
+
+        {/* Quick Actions */}
+        <section className="mt-10">
+          <h3 className="text-xl font-semibold">
+            Quick Actions
+          </h3>
+
+          <div className="mt-5 grid gap-5 md:grid-cols-3">
+
+            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+              <h4 className="font-semibold">Create a Task</h4>
+              <p className="mt-2 text-sm text-slate-400">
+                Plan your next activity.
+              </p>
+            </div>
+
+            <Link
+              href="/knowledge"
+              className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-blue-500/50"
+            >
+              <h4 className="font-semibold">Save Knowledge</h4>
+              <p className="mt-2 text-sm text-slate-400">
+                Capture ideas and useful information.
+              </p>
+            </Link>
+
+            <Link
+              href="/assistant"
+              className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-blue-500/50"
+            >
+              <h4 className="font-semibold">Ask AI</h4>
+              <p className="mt-2 text-sm text-slate-400">
+                Explore ideas and solve problems.
+              </p>
+            </Link>
+
+          </div>
+        </section>
+
+        {/* Activity */}
+        <section className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-6">
+          <h3 className="text-xl font-semibold">Recent Activity</h3>
+
+          <p className="mt-4 text-sm text-slate-500">
+            Your activities will appear here as you start using BrainBox.
+          </p>
+        </section>
+
       </main>
     </div>
   );

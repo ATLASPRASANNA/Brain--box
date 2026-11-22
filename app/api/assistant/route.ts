@@ -186,11 +186,11 @@ export async function POST(request: Request) {
         ? await fetch("https://openai.com", {
             method: "POST",
             headers: {
-              Authorization: `Bearer ${configured.key}`,
+              Authorization: `Bearer ${configured.key.trim()}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+              model: (process.env.OPENAI_MODEL || "gpt-4o-mini").trim(),
               messages: [
                 { role: "system", content: systemPrompt },
                 ...input.messages,
@@ -200,13 +200,13 @@ export async function POST(request: Request) {
           })
         : await fetch(
             `https://googleapis.com{encodeURIComponent(
-              process.env.GEMINI_MODEL || "gemini-2.5-flash",
+              (process.env.GEMINI_MODEL || "gemini-2.5-flash").trim(),
             )}:generateContent`,
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                "x-goog-api-key": configured.key,
+                "x-goog-api-key": configured.key.trim(),
               },
               body: JSON.stringify({
                 systemInstruction: { parts: [{ text: systemPrompt }] },
@@ -246,10 +246,11 @@ export async function POST(request: Request) {
     }
 
     return Response.json({ answer, provider: configured.provider });
-  } catch {
+  } catch (err) {
+    const detail = err instanceof Error ? err.message : "Unknown error";
     return Response.json(
       {
-        error: `Could not connect to ${configured.provider}; check network access and try again.`,
+        error: `Could not connect to ${configured.provider}: ${detail}`,
       },
       { status: 502 },
     );

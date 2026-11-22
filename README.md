@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BrainBox
 
-## Getting Started
+**BrainBox** is an AI-powered personal productivity and second-brain web app that unifies task management, structured notes, and an intelligent AI assistant in one cloud workspace.
 
-First, run the development server:
+**Live App:** [https://vercel.app](https://vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Gemini AI Assistant:** Summarize notes, brainstorm ideas, and generate action items via server-side Google Gemini API routes.
+- **My Tasks:** Create, prioritize, schedule, and track tasks in real time.
+- **Knowledge Vault:** Organize categorized, tagged notes with instant search.
+- **Cloud Auth & Sync:** Email/password authentication and private per-user PostgreSQL storage powered by Supabase Row-Level Security (RLS), with local storage fallback.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Architecture & Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend:** Next.js (App Router), React, TypeScript, Tailwind CSS
+- **AI Layer:** Next.js API Routes + Google Gemini API (`GEMINI_API_KEY`)
+- **Database & Auth:** Supabase PostgreSQL (`tasks` & `notes` tables with RLS)
+- **Hosting & CI/CD:** GitHub + Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Quick Setup
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone & Install:**
+   ```bash
+   git clone https://github.com && cd brainbox && npm install
+   ```
+2. **Add `.env.local`:**
+   ```env
+   GEMINI_API_KEY=your_gemini_key
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+3. **Run Locally:**
+   ```bash
+   npm run dev
+   ```

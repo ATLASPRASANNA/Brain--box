@@ -183,7 +183,7 @@ export async function POST(request: Request) {
   try {
     const response =
       configured.provider === "openai"
-        ? await fetch("https://api.openai.com/v1/chat/completions", {
+        ? await fetch("https://openai.com", {
             method: "POST",
             headers: {
               Authorization: `Bearer ${configured.key}`,
@@ -199,12 +199,15 @@ export async function POST(request: Request) {
             signal: AbortSignal.timeout(45_000),
           })
         : await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(
-              process.env.GEMINI_MODEL || "gemini-3.8-flash",
-            )}:generateContent?key=${encodeURIComponent(configured.key)}`,
+            `https://googleapis.com{encodeURIComponent(
+              process.env.GEMINI_MODEL || "gemini-2.5-flash",
+            )}:generateContent`,
             {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
+              headers: {
+                "Content-Type": "application/json",
+                "x-goog-api-key": configured.key,
+              },
               body: JSON.stringify({
                 systemInstruction: { parts: [{ text: systemPrompt }] },
                 contents: input.messages.map((message) => ({
